@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin } from 'lucide-react';
 
 const Contact: React.FC = () => {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -11,11 +13,32 @@ const Contact: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulate form submission
-    alert("Thank you for contacting RecoverX! We will get back to you shortly.");
-    setFormData({ name: '', company: '', phone: '', email: '', service: 'ev-recovery', message: '' });
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formDataObj = new FormData(form);
+    
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataObj
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setIsSuccess(true);
+        setFormData({ name: '', company: '', phone: '', email: '', service: 'ev-recovery', message: '' });
+      } else {
+        alert(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -87,8 +110,31 @@ const Contact: React.FC = () => {
 
             {/* Contact Form */}
             <div className="p-10 md:p-14 bg-white">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {isSuccess ? (
+                    <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-10">
+                        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
+                            <Send size={40} />
+                        </div>
+                        <h2 className="text-3xl font-bold text-slate-900">Message Sent!</h2>
+                        <p className="text-slate-600 max-w-sm">
+                            Thank you for contacting RecoverX! We have received your message and will get back to you shortly.
+                        </p>
+                        <button 
+                            onClick={() => setIsSuccess(false)}
+                            className="text-brand-blue font-bold hover:underline pt-4"
+                        >
+                            Send another message
+                        </button>
+                    </div>
+                ) : (
+                    <form 
+                        action="https://api.web3forms.com/submit" 
+                        method="POST" 
+                        onSubmit={handleSubmit} 
+                        className="space-y-6"
+                    >
+                        <input type="hidden" name="access_key" value="ee5d1528-80ff-4257-8da4-143b498b98bd" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label className="block text-sm font-semibold text-slate-700 mb-2">Name</label>
                             <input 
@@ -171,11 +217,13 @@ const Contact: React.FC = () => {
 
                     <button 
                         type="submit" 
-                        className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-lg transition-all transform active:scale-95 flex justify-center items-center shadow-lg"
+                        disabled={isSubmitting}
+                        className={`w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-lg transition-all transform active:scale-95 flex justify-center items-center shadow-lg ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                        Send Message <Send size={18} className="ml-2" />
+                        {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={18} className="ml-2" />
                     </button>
                 </form>
+                )}
             </div>
         </div>
       </div>
