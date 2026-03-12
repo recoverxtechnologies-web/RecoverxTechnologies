@@ -1,6 +1,7 @@
 import React from 'react';
 import { Truck, Car, Zap, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Services: React.FC = () => {
   return (
@@ -14,7 +15,53 @@ const Services: React.FC = () => {
         <meta property="og:url" content="https://gorecoverx.com/services" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+        
+        {/* Service Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Industrial Scrap Management",
+            "provider": {
+              "@type": "Organization",
+              "name": "RecoverX Technologies",
+              "url": "https://gorecoverx.com"
+            },
+            "areaServed": { "@type": "State", "name": "Karnataka" },
+            "description": "Industrial scrap buying, e-waste recycling, metal scrap collection and IT asset disposal in Bangalore and Karnataka",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Scrap Services",
+              "itemListElement": [
+                {"@type":"Offer","itemOffered":{"@type":"Service","name":"Metal Scrap Buying"}},
+                {"@type":"Offer","itemOffered":{"@type":"Service","name":"E-Waste Recycling"}},
+                {"@type":"Offer","itemOffered":{"@type":"Service","name":"IT Asset Disposal"}},
+                {"@type":"Offer","itemOffered":{"@type":"Service","name":"Factory Scrap Pickup"}},
+                {"@type":"Offer","itemOffered":{"@type":"Service","name":"GreenCycle Program"}}
+              ]
+            }
+          })}
+        </script>
+
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,
+               "name":"Home","item":"https://gorecoverx.com/"},
+              {"@type":"ListItem","position":2,
+               "name":"Services","item":"https://gorecoverx.com/services"}
+            ]
+          })}
+        </script>
       </Helmet>
+      
+      <div className="bg-white border-b border-gray-100">
+        <Breadcrumb items={[{label:'Services', path:'/services'}]} />
+      </div>
+
       {/* Header */}
       <section className="bg-brand-blue text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

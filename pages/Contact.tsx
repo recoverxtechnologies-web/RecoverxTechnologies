@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '../components/Breadcrumb';
 
 const Contact: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -57,7 +58,26 @@ const Contact: React.FC = () => {
         <meta property="og:url" content="https://gorecoverx.com/contact" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+        
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,
+               "name":"Home","item":"https://gorecoverx.com/"},
+              {"@type":"ListItem","position":2,
+               "name":"Contact","item":"https://gorecoverx.com/contact"}
+            ]
+          })}
+        </script>
       </Helmet>
+
+      <div className="bg-white border-b border-gray-100">
+        <Breadcrumb items={[{label:'Contact', path:'/contact'}]} />
+      </div>
+
        <section className="bg-slate-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>

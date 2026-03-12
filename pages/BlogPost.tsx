@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '../components/Breadcrumb';
 
 const BLOG_POSTS = [
   {
@@ -53,6 +55,61 @@ const BlogPost: React.FC = () => {
 
   return (
     <div className="bg-white min-h-screen pb-20">
+      <Helmet>
+        <title>{post.title} | RecoverX Blog</title>
+        <link rel="canonical" href={`https://gorecoverx.com/blog/${post.slug}`} />
+        
+        {/* Article Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": post.title,
+            "description": post.title, // Using title as fallback for metaDescription
+            "image": `https://gorecoverx.com/blog/${post.slug}.webp`,
+            "author": {
+              "@type": "Organization",
+              "name": "RecoverX Technologies"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "RecoverX Technologies",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://gorecoverx.com/logo.webp"
+              }
+            },
+            "datePublished": post.date,
+            "dateModified": post.date,
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://gorecoverx.com/blog/${post.slug}`
+            }
+          })}
+        </script>
+
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,
+               "name":"Home","item":"https://gorecoverx.com/"},
+              {"@type":"ListItem","position":2,
+               "name":"Blog","item":"https://gorecoverx.com/blog"},
+              {"@type":"ListItem","position":3,
+               "name": post.title,
+               "item": `https://gorecoverx.com/blog/${post.slug}`}
+            ]
+          })}
+        </script>
+      </Helmet>
+
+      <div className="bg-white border-b border-gray-100">
+        <Breadcrumb items={[{label:'Blog', path:'/blog'}, {label: post.title, path: ''}]} />
+      </div>
+
       <div className="max-w-4xl mx-auto px-4 py-12">
         <Link to="/blog" className="inline-flex items-center text-slate-600 hover:text-brand-blue mb-8 transition-colors">
           <ArrowLeft size={20} className="mr-2" /> Back to Blog
@@ -85,3 +142,4 @@ const BlogPost: React.FC = () => {
 };
 
 export default BlogPost;
+

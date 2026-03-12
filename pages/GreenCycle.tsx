@@ -1,10 +1,36 @@
 import React from 'react';
 import { Recycle, Leaf, ShieldCheck, Factory, Zap, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import Breadcrumb from '../components/Breadcrumb';
 
 const GreenCycle: React.FC = () => {
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>GreenCycle | Sustainable Industrial Scrap & E-Waste Recycling</title>
+        <meta name="description" content="RecoverX GreenCycle initiative provides sustainable scrapping solutions for industrial scrap, e-waste, and commercial bulk waste in Bangalore." />
+        <link rel="canonical" href="https://gorecoverx.com/greencycle" />
+        
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,
+               "name":"Home","item":"https://gorecoverx.com/"},
+              {"@type":"ListItem","position":2,
+               "name":"GreenCycle","item":"https://gorecoverx.com/greencycle"}
+            ]
+          })}
+        </script>
+      </Helmet>
+
+      <div className="bg-white border-b border-gray-100">
+        <Breadcrumb items={[{label:'GreenCycle', path:'/greencycle'}]} />
+      </div>
+
       {/* GreenCycle Hero */}
       <section className="bg-slate-900 text-white py-24 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>

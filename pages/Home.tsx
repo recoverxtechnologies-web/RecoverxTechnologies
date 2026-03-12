@@ -31,42 +31,6 @@ const Home: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "RecoverX Technologies",
-    "image": "https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000",
-    "@id": "https://gorecoverx.com",
-    "url": "https://gorecoverx.com",
-    "telephone": "+91 79756 60772",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "No. 32, Work Place, JP Nagar",
-      "addressLocality": "Bangalore",
-      "addressRegion": "Karnataka",
-      "postalCode": "560078",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 12.9063,
-      "longitude": 77.5857
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "09:00",
-      "closes": "18:00"
-    }
-  };
-
   return (
     <div className="flex flex-col">
       <Helmet>
@@ -78,8 +42,143 @@ const Home: React.FC = () => {
         <meta property="og:url" content="https://gorecoverx.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+        
+        {/* Organization Schema */}
         <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "RecoverX Technologies",
+            "alternateName": "GoRecoverX",
+            "url": "https://gorecoverx.com",
+            "logo": "https://gorecoverx.com/logo.webp",
+            "description": "Bangalore-based industrial scrap buyers and e-waste recycling startup serving Karnataka and India",
+            "telephone": "+917975660772",
+            "email": "info@gorecoverx.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bangalore",
+              "addressRegion": "Karnataka",
+              "postalCode": "560001",
+              "addressCountry": "IN"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/company/recoverx",
+              "https://www.instagram.com/gorecoverx",
+              "https://twitter.com/gorecoverx"
+            ]
+          })}
+        </script>
+
+        {/* WebSite + Sitelinks Searchbox */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "RecoverX Technologies",
+            "url": "https://gorecoverx.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://gorecoverx.com/search?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
+            }
+          })}
+        </script>
+
+        {/* LocalBusiness */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "RecoverX Technologies",
+            "image": "https://gorecoverx.com/og-image.webp",
+            "url": "https://gorecoverx.com",
+            "telephone": "+917975660772",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bangalore",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 12.9716,
+              "longitude": 77.5946
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday","Tuesday","Wednesday",
+                "Thursday","Friday","Saturday"
+              ],
+              "opens": "09:00",
+              "closes": "18:00"
+            },
+            "serviceArea": { "@type": "State", "name": "Karnataka" },
+            "priceRange": "₹₹",
+            "hasMap": "https://maps.google.com/?q=RecoverX+Technologies+Bangalore"
+          })}
+        </script>
+
+        {/* FAQPage */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How do I sell industrial scrap in Bangalore?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Simply call RecoverX Technologies on +91 79756 60772 or fill our online form. We will schedule a free doorstep pickup at your factory, warehouse or office anywhere in Bangalore or Karnataka."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What types of scrap does RecoverX buy?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We buy all types of industrial scrap including metal scrap (iron, steel, copper, aluminium), e-waste, plastic scrap, electrical scrap, factory surplus and office dismantling waste across Bangalore and Karnataka."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you provide doorstep scrap pickup in Bangalore?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. RecoverX offers free doorstep industrial scrap pickup across all areas of Bangalore and Karnataka. No logistics hassle — we come to you."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are you certified scrap buyers in Karnataka?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. RecoverX Technologies works with KSPCB-compliant certified recycling partners across Karnataka and provides full documentation for every transaction."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How is the scrap price calculated?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our prices are linked to live commodity market rates ensuring you always get a fair, transparent, market-driven price for your industrial scrap — no arbitrary undervaluation."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do you handle e-waste disposal for IT companies?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. RecoverX provides complete IT asset disposal and e-waste recycling for IT companies in Bangalore. We provide a Recycling Certificate for your ESG and compliance records under E-Waste Rules 2022."
+                }
+              }
+            ]
+          })}
         </script>
       </Helmet>
       {/* Hero Section */}
