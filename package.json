@@ -6,8 +6,32 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "postbuild": "react-snap || echo 'Pre-rendering failed, but continuing build...'",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
+  },
+  "reactSnap": {
+    "source": "build",
+    "minifyHtml": {
+      "collapseWhitespace": false
+    },
+    "skipThirdPartyRequests": true,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-gpu",
+      "--disable-dev-shm-usage"
+    ],
+    "routes": [
+      "/",
+      "/about",
+      "/services",
+      "/blog",
+      "/blog/industrial-scrap-management-bangalore",
+      "/blog/e-waste-recycling-startups-india",
+      "/greencycle",
+      "/contact"
+    ]
   },
   "dependencies": {
     "lucide-react": "^0.563.0",
@@ -19,6 +43,7 @@
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "react-snap": "^1.23.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
   }
