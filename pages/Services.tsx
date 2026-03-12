@@ -1,9 +1,20 @@
 import React from 'react';
 import { Truck, Car, Zap, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const Services: React.FC = () => {
   return (
     <div className="bg-gray-50 pb-20">
+      <Helmet>
+        <title>Industrial Scrap & E-Waste Services in Bangalore | RecoverX</title>
+        <meta name="description" content="RecoverX offers specialized industrial scrap buying, e-waste recycling, EV recovery, and sustainable logistics solutions in Bangalore and across India." />
+        <link rel="canonical" href="https://gorecoverx.com/services" />
+        <meta property="og:title" content="Industrial Scrap & E-Waste Services in Bangalore | RecoverX" />
+        <meta property="og:description" content="RecoverX offers specialized industrial scrap buying, e-waste recycling, EV recovery, and sustainable logistics solutions in Bangalore and across India." />
+        <meta property="og:url" content="https://gorecoverx.com/services" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+      </Helmet>
       {/* Header */}
       <section className="bg-brand-blue text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

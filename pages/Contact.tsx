@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const Contact: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -47,6 +48,16 @@ const Contact: React.FC = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Contact RecoverX | Scrap Pickup in Bangalore & Karnataka</title>
+        <meta name="description" content="Contact RecoverX Technologies for industrial scrap pickup, e-waste recycling, and logistics solutions in Bangalore and across Karnataka. Get a quote today." />
+        <link rel="canonical" href="https://gorecoverx.com/contact" />
+        <meta property="og:title" content="Contact RecoverX | Scrap Pickup in Bangalore & Karnataka" />
+        <meta property="og:description" content="Contact RecoverX Technologies for industrial scrap pickup, e-waste recycling, and logistics solutions in Bangalore and across Karnataka. Get a quote today." />
+        <meta property="og:url" content="https://gorecoverx.com/contact" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+      </Helmet>
        <section className="bg-slate-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>

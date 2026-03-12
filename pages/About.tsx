@@ -1,9 +1,20 @@
 import React from 'react';
 import { Target, Eye, Users } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const About: React.FC = () => {
   return (
     <div className="bg-white">
+      <Helmet>
+        <title>About RecoverX | Bangalore Startup for Industrial Scrap Solutions</title>
+        <meta name="description" content="Learn about RecoverX Technologies, a Bangalore-based startup specializing in industrial scrap management, e-waste recycling, and sustainable logistics solutions." />
+        <link rel="canonical" href="https://gorecoverx.com/about" />
+        <meta property="og:title" content="About RecoverX | Bangalore Startup for Industrial Scrap Solutions" />
+        <meta property="og:description" content="Learn about RecoverX Technologies, a Bangalore-based startup specializing in industrial scrap management, e-waste recycling, and sustainable logistics solutions." />
+        <meta property="og:url" content="https://gorecoverx.com/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+      </Helmet>
       {/* Header */}
       <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-blue/10 skew-x-12 transform translate-x-20"></div>

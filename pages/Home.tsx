@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Truck, RefreshCw, Car, Zap } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const HERO_IMAGES = [
   {
@@ -30,8 +31,57 @@ const Home: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "RecoverX Technologies",
+    "image": "https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000",
+    "@id": "https://gorecoverx.com",
+    "url": "https://gorecoverx.com",
+    "telephone": "+91 79756 60772",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 32, Work Place, JP Nagar",
+      "addressLocality": "Bangalore",
+      "addressRegion": "Karnataka",
+      "postalCode": "560078",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 12.9063,
+      "longitude": 77.5857
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  };
+
   return (
     <div className="flex flex-col">
+      <Helmet>
+        <title>Industrial Scrap Buyers in Bangalore | RecoverX Technologies</title>
+        <meta name="description" content="RecoverX Technologies — Bangalore-based startup offering certified industrial scrap buying, e-waste recycling & sustainable waste solutions across Karnataka & India. Get instant pickup." />
+        <link rel="canonical" href="https://gorecoverx.com/" />
+        <meta property="og:title" content="Industrial Scrap Buyers in Bangalore | RecoverX Technologies" />
+        <meta property="og:description" content="RecoverX Technologies — Bangalore-based startup offering certified industrial scrap buying, e-waste recycling & sustainable waste solutions across Karnataka & India. Get instant pickup." />
+        <meta property="og:url" content="https://gorecoverx.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://drive.google.com/thumbnail?id=1y0sfg4Lw2ycxe_yxJgrxipJOMRaxLxB8&sz=w1000" />
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <section className="relative h-[90vh] w-full overflow-hidden bg-slate-900">
         {/* Background Slides */}

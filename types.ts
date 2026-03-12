@@ -20,6 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Home', path: '/' },
   { label: 'About Us', path: '/about' },
   { label: 'Services', path: '/services' },
+  { label: 'Blog', path: '/blog' },
   { label: 'GreenCycle', path: '/greencycle' },
   { label: 'Contact', path: '/contact' },
 ];
