@@ -14,27 +14,25 @@ import NotFound from './pages/NotFound';
 
 const App: React.FC = () => {
   return (
-    <HelmetProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
-          <Navbar />
-          {/* Standard padding-top for navbar */}
-          <main className="flex-grow pt-16 md:pt-20">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/greencycle" element={<GreenCycle />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
-    </HelmetProvider>
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+        <Navbar />
+        {/* Standard padding-top for navbar */}
+        <main className="flex-grow pt-16 md:pt-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/greencycle" element={<GreenCycle />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

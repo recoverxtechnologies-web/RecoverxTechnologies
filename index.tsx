@@ -1,23 +1,13 @@
 import React from 'react';
-import { hydrateRoot, createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 
-const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
-
-if (rootElement.hasChildNodes()) {
-  hydrateRoot(
-    rootElement,
-    <React.StrictMode>
+const rootElement = document.getElementById('root')!;
+createRoot(rootElement).render(
+  <React.StrictMode>
+    <HelmetProvider>
       <App />
-    </React.StrictMode>
-  );
-} else {
-  createRoot(rootElement).render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-}
+    </HelmetProvider>
+  </React.StrictMode>
+);
